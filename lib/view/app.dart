@@ -2,6 +2,7 @@ import 'package:gk/provider/auth.provider.dart';
 import 'package:gk/view/screens/auth/login.screen.dart';
 import 'package:flutter/material.dart';
 import 'package:gk/view/screens/dashboard/dashboard.screen.dart';
+import 'package:gk/view/screens/zoom/join-meeting.screen.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -42,7 +43,7 @@ class _AppState extends State<App> {
           ],
           child: MaterialApp(
               title: 'GK',
-              home: isLogin != null ? DashboardScreen() : LoginScreen()),
+              home: isLogin != null ? JoinMeeting() : LoginScreen()),
         );
       },
     );

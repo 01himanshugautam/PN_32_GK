@@ -5,6 +5,7 @@ import 'package:gk/utils/constants/colors.constant.dart';
 import 'package:gk/view/basewidget/custom-button.widget.dart';
 import 'package:gk/view/basewidget/custom-text-field.widget.dart';
 import 'package:gk/view/screens/dashboard/dashboard.screen.dart';
+import 'package:gk/view/screens/zoom/join-meeting.screen.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -71,7 +72,7 @@ class LoginScreen extends StatelessWidget {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const DashboardScreen()));
+                          builder: (context) =>  JoinMeeting()));
                 } else if (response.data['status'] == 0) {
                   CommonFunctions.showSuccessToast(response.data['msg']);
                 }
