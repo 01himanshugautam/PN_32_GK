@@ -33,6 +33,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+                 <action android:name="com.example.app.START_BACKGROUND" />
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.

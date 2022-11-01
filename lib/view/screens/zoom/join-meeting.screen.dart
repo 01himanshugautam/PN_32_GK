@@ -21,18 +21,28 @@ class _JoinMeetingState extends State<JoinMeeting> {
     domain: "zoom.us",
     appKey: dotenv.env['ZOOM_APP_KEY'],
     appSecret: dotenv.env['ZOOM_APP_SECRET'],
+    disableJoinAudio: true,
+    disableInvite : true,
+   disableCallOut : true,
+   disableRecord : true,
+   audioPanelAlwaysOpen : true,
+    // audioPanelAlwaysOpen: true
   );
 
   ZoomMeetingOptions meetingOptions = ZoomMeetingOptions(
-      userId: 'User First',
-      meetingId: dotenv.env['ZOOM_MEETING_ID'],
-      meetingPassword: dotenv.env['ZOOM_MEETING_PASSWORD'],
-      disableDialIn: "true",
-      disableDrive: "true",
-      disableInvite: "true",
-      disableShare: "true",
-      noAudio: "false",
-      noDisconnectAudio: "false");
+    userId: 'User First',
+    meetingId: dotenv.env['ZOOM_MEETING_ID'],
+    meetingPassword: dotenv.env['ZOOM_MEETING_PASSWORD'],
+    disableDialIn: "true",
+  
+    disableDrive: "true",
+    
+    disableInvite: "true",
+    disableShare: "true",
+    // noAudio: "true",
+    // noDisconnectAudio: "true",
+    // viewOptions: "false",
+  );
 
   Timer? timer;
 
@@ -72,6 +82,7 @@ class _JoinMeetingState extends State<JoinMeeting> {
             }
           });
           debugPrint("listen on event channel");
+
           zoom.joinMeeting(meetingOptions).then((joinMeetingResult) {
             timer = Timer.periodic(const Duration(seconds: 2), (timer) {
               zoom.meetingStatus(meetingOptions.meetingId!).then((status) {
@@ -90,7 +101,7 @@ class _JoinMeetingState extends State<JoinMeeting> {
   void initState() {
     // TODO: implement initState
     super.initState();
-     connect();
+    connect();
   }
 
   @override
@@ -105,26 +116,26 @@ class _JoinMeetingState extends State<JoinMeeting> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // CustomButton(
-            //   text: "Connect",
-            //   color: AppColors.appColor,
-            //   width: 30.w,
-            //   onPressed: () async {
-            //     debugPrint("Connect Pressed");
-            //     var phoneStatus = await Permission.phone.request();
-            //     var cameraStatus = await Permission.camera.request();
-            //     var bluetoothStatus = await Permission.bluetooth.request();
-            //     var bluetoothConnectStatus =
-            //         await Permission.bluetoothConnect.request();
-            //     if (phoneStatus == PermissionStatus.granted &&
-            //         bluetoothStatus == PermissionStatus.granted &&
-            //         bluetoothConnectStatus == PermissionStatus.granted &&
-            //         cameraStatus == PermissionStatus.granted) {
-            //       debugPrint("Phone Status: $phoneStatus");
-            //       connect();
-            //     }
-            //   },
-            // ),
+            CustomButton(
+              text: "Connect",
+              color: AppColors.appColor,
+              width: 30.w,
+              onPressed: () async {
+                debugPrint("Connect Pressed");
+                var phoneStatus = await Permission.phone.request();
+                var cameraStatus = await Permission.camera.request();
+                var bluetoothStatus = await Permission.bluetooth.request();
+                var bluetoothConnectStatus =
+                    await Permission.bluetoothConnect.request();
+                if (phoneStatus == PermissionStatus.granted &&
+                    bluetoothStatus == PermissionStatus.granted &&
+                    bluetoothConnectStatus == PermissionStatus.granted &&
+                    cameraStatus == PermissionStatus.granted) {
+                  debugPrint("Phone Status: $phoneStatus");
+                  connect();
+                }
+              },
+            ),
             // SizedBox(height: 2.h),
             // CustomButton(
             //   text: "Disconnect",
